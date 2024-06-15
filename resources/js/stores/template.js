@@ -42,6 +42,7 @@ export const useTemplateStore = defineStore({
             sideTransitions: true,
             mainContent: "", // 'boxed', ''narrow'
         },
+        token: null, // Add this line to store the token
     }),
     actions: {
         // Sets the layout, useful for setting different layouts (under layouts/variations/)
@@ -240,6 +241,10 @@ export const useTemplateStore = defineStore({
         // Sets side transitions
         setSideTransitions(payload) {
             this.settings.sideTransitions = payload.transitions;
+        },
+        // Sets the token
+        setToken(newToken) {
+            this.token = newToken;
         },
     },
 });

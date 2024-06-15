@@ -108,7 +108,7 @@ async function onSubmit() {
                 >View Terms</a
               >
               <RouterLink
-                :to="{ name: 'login' }"
+                :to="{ name: 'auth-signin' }"
                 class="btn-block-option"
               >
                 <i class="fa fa-sign-in-alt"></i>

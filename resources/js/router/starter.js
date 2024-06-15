@@ -9,6 +9,16 @@ import NProgress from "nprogress/nprogress.js";
 import LayoutBackend from "@/layouts/variations/BackendStarter.vue";
 import LayoutSimple from "@/layouts/variations/Simple.vue";
 
+// Backend: Pages
+const BackendPagesAuth = () =>
+    import ("@/views/backend/pages/AuthView.vue");
+const BackendPagesErrors = () =>
+    import ("@/views/backend/pages/ErrorsView.vue");
+const BackendPagesBlankBlock = () =>
+    import ("@/views/quick-fight/BlankBlockView.vue");
+const AuthLock = () =>
+    import ("@/views/auth/LockView.vue");
+
 // Error views
 const Error400 = () =>
     import ("@/views/errors/400View.vue");
@@ -49,8 +59,8 @@ const routes = [{
         path: "/auth",
         component: LayoutSimple, // Assuming you want to use the same layout for auth routes
         children: [{
-                path: "login",
-                name: "login",
+                path: "auth-signin",
+                name: "auth-signin",
                 component: SignIn,
             },
             {
@@ -63,6 +73,11 @@ const routes = [{
                 name: 'auth-signup',
                 component: SignUpView,
             },
+            {
+                path: "lock",
+                name: "auth-lock",
+                component: AuthLock,
+            },
         ],
     },
     {
@@ -74,6 +89,25 @@ const routes = [{
             name: "backend-dashboard",
             component: Dashboard,
         }, ],
+    },
+    {
+        path: "/pages",
+        children: [{
+                path: "auth",
+                name: "backend-pages-auth",
+                component: BackendPagesAuth,
+            },
+            {
+                path: "blank-block",
+                name: "blank-block",
+                component: BackendPagesBlankBlock,
+            },
+            {
+                path: "errors",
+                name: "backend-pages-errors",
+                component: BackendPagesErrors,
+            },
+        ],
     },
     // Error routes
     {

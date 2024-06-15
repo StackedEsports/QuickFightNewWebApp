@@ -42,7 +42,7 @@ onMounted(() => {
 
 
 
-            <RouterLink :to="{ name: 'login' }" class="btn btn-primary py-2 px-3 m-1" v-click-ripple>
+            <RouterLink :to="{ name: 'auth-signin' }" class="btn btn-primary py-2 px-3 m-1" v-click-ripple>
               <i class="fa fa-fw fa-desktop opacity-50 me-1"></i> Get started
             </RouterLink>
             <a class="btn btn-alt-primary py-2 px-3 m-1" href="https://pixelcave.com/products/oneui" v-click-ripple>

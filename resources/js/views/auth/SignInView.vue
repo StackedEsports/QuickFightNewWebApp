@@ -2,6 +2,7 @@
 import { reactive, computed } from "vue";
 import { useRouter } from "vue-router";
 import { useTemplateStore } from "@/stores/template";
+import axios from 'axios';
 
 // Vuelidate, for more info and examples you can check out https://github.com/vuelidate/vuelidate
 import useVuelidate from "@vuelidate/core";
@@ -36,15 +37,35 @@ const v$ = useVuelidate(rules, state);
 
 // On form submission
 async function onSubmit() {
+  console.log("submitting");
   const result = await v$.value.$validate();
 
   if (!result) {
     // notify user form is invalid
+    console.error("Form validation failed.");
     return;
   }
 
-  // Go to dashboard
-  router.push({ name: "backend-pages-auth" });
+  // Prepare the credentials
+  const credentials = {
+    email: state.username, // Assuming the username is the email
+    password: state.password
+  };
+
+  // Send a POST request to the login endpoint
+  try {
+    const response = await axios.post('/api/auth/login', credentials);
+    const token = response.data.access_token;
+    const templateStore = useTemplateStore();
+    templateStore.setToken(token);  // Store the token in the Pinia store
+
+    console.log("Login successful, token:", token);
+
+    // Go to dashboard
+    router.push({ name: "blank-block" });
+  } catch (error) {
+    console.error("Login failed:", error.response.data.error);
+  }
 }
 
 // Function to handle Discord login
