@@ -43,6 +43,7 @@ export const useTemplateStore = defineStore({
             mainContent: "", // 'boxed', ''narrow'
         },
         token: null, // Add this line to store the token
+        user: null, // Add this line to store the user details
     }),
     actions: {
         // Sets the layout, useful for setting different layouts (under layouts/variations/)
@@ -245,6 +246,10 @@ export const useTemplateStore = defineStore({
         // Sets the token
         setToken(newToken) {
             this.token = newToken;
+        },
+        // Sets the user data
+        setUser(userData) {
+            this.user = userData;
         },
     },
 });

@@ -70,7 +70,7 @@ onUnmounted(() => {
           <!-- User Info -->
           <div class="ms-2">
             <a class="text-dark fw-semibold fs-sm" href="javascript:void(0)"
-              >John Smith</a
+              >{{ store.user.name }}</a
             >
           </div>
           <!-- END User Info -->

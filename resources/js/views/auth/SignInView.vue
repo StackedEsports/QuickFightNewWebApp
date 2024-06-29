@@ -56,10 +56,13 @@ async function onSubmit() {
   try {
     const response = await axios.post('/api/auth/login', credentials);
     const token = response.data.access_token;
+    const user = response.data.user; // Extract the user data from the response
     const templateStore = useTemplateStore();
     templateStore.setToken(token);  // Store the token in the Pinia store
+    templateStore.setUser(user);    // Store the user data in the Pinia store
 
     console.log("Login successful, token:", token);
+    console.log("User data:", user);
 
     // Go to dashboard
     router.push({ name: "blank-block" });
